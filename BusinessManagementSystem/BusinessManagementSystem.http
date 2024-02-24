@@ -1,0 +1,6 @@
+@BusinessManagementSystem_HostAddress = http://localhost:5101
+
+GET {{BusinessManagementSystem_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
