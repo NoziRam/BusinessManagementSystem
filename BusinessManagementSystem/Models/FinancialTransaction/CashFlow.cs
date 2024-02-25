@@ -1,6 +1,8 @@
-﻿namespace BusinessManagementSystem.Models.FinancialTransaction
+﻿using BusinessManagementSystem.Models.BaseEntityModels;
+
+namespace BusinessManagementSystem.Models.FinancialTransaction
 {
-    public class CashFlow
+    public class CashFlow:BaseEntity
     {
         public double Sale { get; set; }
         public double Purchase { get; set; }

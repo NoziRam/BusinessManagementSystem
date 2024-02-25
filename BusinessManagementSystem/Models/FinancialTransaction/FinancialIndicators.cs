@@ -1,6 +1,8 @@
-﻿namespace BusinessManagementSystem.Models.FinancialTransaction
+﻿using BusinessManagementSystem.Models.BaseEntityModels;
+
+namespace BusinessManagementSystem.Models.FinancialTransaction
 {
-    public class FinancialIndicators
+    public class FinancialIndicators:BaseEntity
     {
         public double Leverage { get; set; }
 
