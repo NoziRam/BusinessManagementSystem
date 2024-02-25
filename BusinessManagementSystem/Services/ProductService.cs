@@ -5,9 +5,17 @@ namespace BusinessManagementSystem.Services
 {
     public class ProductService : IProductService
     {
+        private readonly IProductRepository _productRepository;
+
+        public ProductService(IProductRepository productRepository)
+        {
+                _productRepository = productRepository;
+        }
         public bool Creat(Product item)
         {
-            throw new NotImplementedException();
+            if (item != null) 
+            _productRepository.Creat(item);
+            return true;
         }
 
         public bool Delete(Guid id)
@@ -20,7 +28,7 @@ namespace BusinessManagementSystem.Services
             throw new NotImplementedException();
         }
 
-        public Product GetById(int id)
+        public Product GetById(Guid id)
         {
             throw new NotImplementedException();
         }

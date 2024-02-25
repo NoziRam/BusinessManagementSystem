@@ -1,4 +1,10 @@
 
+using BusinessManagementSystem.Infrastructure;
+using BusinessManagementSystem.Interfaces;
+using BusinessManagementSystem.Repositories;
+using BusinessManagementSystem.Services;
+using Microsoft.EntityFrameworkCore;
+
 namespace BusinessManagementSystem
 {
     public class Program
@@ -8,8 +14,13 @@ namespace BusinessManagementSystem
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddDbContext<BusinessDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("connectionSringsSQL")));
+          
             builder.Services.AddControllers();
+
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IProductService, ProductService>();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
