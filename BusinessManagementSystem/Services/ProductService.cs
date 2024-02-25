@@ -11,31 +11,44 @@ namespace BusinessManagementSystem.Services
         {
                 _productRepository = productRepository;
         }
-        public bool Creat(Product item)
+        public IQueryable<Product> GetAll()
         {
-            if (item != null) 
-            _productRepository.Creat(item);
+           return _productRepository.GetAll();
+        }
+        public Product GetById(Guid id)
+        {
+            return _productRepository.GetById(id);
+        }
+        public string Creat(Product item)
+        {
+           _productRepository.Creat(item);
+            return "";
+           
+        }
+        public bool Update(Guid id, Product item)
+        {
+            var _item = _productRepository.GetById(id);
+            if (_item != null)
+            { 
+                _item.Price = item.Price;   
+                _item.Quantity = item.Quantity;
+                _item.Description = item.Description;
+                _item.Category = item.Category; 
+                _item.Name= item.Name;
+              
+            }
             return true;
         }
 
         public bool Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var item = GetById(id);
+            if (item != null)
+                _productRepository.Delete(id);
+          return true;
         }
 
-        public IQueryable<Product> GetAll()
-        {
-            throw new NotImplementedException();
-        }
 
-        public Product GetById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public bool Update(Guid id, Product item)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

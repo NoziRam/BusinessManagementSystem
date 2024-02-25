@@ -24,20 +24,32 @@ namespace BusinessManagementSystem.Controllers
             return Ok(_productService.GetById(id));
         }
 
-        [HttpPost("Create")]
-        public IActionResult Post([FromBody] Product product) 
+        [HttpPost]
+        public IActionResult Create([FromBody] Product product)
         {
-          return Ok(_productService.Creat(product));
-        }
+            try
+            {
+                if (product == null)
+                {
+                    return BadRequest("Invalid product data.");
+                }
 
+                var createdProduct = _productService.Creat(product);
+                return Ok(createdProduct);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
         [HttpPut("Update")]
-        public IActionResult Update([FromBody] Product product, [FromBody] Guid id) 
+        public IActionResult Update([FromBody] Product product, [FromQuery] Guid id) 
         {
            return Ok(_productService.Update(id,product));
         }
 
         [HttpDelete("Delete")]
-        public IActionResult DeleteById([FromBody]Guid id) 
+        public IActionResult DeleteById([FromQuery]Guid id) 
         {
             return Ok(_productService.Delete(id));
         }

@@ -6,7 +6,7 @@ namespace BusinessManagementSystem.Interfaces
     {
         public IQueryable<Product> GetAll();
         public Product GetById(Guid id);
-        public bool Creat(Product item);
+        public string Creat(Product item);
         public bool Update(Guid id, Product item);
         public bool Delete(Guid id);
     }
