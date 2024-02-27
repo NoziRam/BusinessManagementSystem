@@ -32,6 +32,7 @@ namespace BusinessManagementSystem.Infrastructure
             modelBuilder.Entity<Admin>(entity => entity.HasKey(a => a.Id));
             modelBuilder.Entity<Owner>(entity => entity.HasKey(o => o.Id));
             modelBuilder.Entity<Worker>(entity => entity.HasKey(w => w.Id));
+            
 
 
         }

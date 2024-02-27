@@ -1,4 +1,5 @@
-﻿using BusinessManagementSystem.Interfaces;
+﻿using BusinessManagementSystem.Dtios;
+using BusinessManagementSystem.Interfaces;
 using BusinessManagementSystem.Models.Product;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,49 +10,36 @@ namespace BusinessManagementSystem.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductService _productService;
+        private readonly IProductRepository _productRopository;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductRepository productRepository)
         {
-            _productService = productService;
+            _productRopository = productRepository;
         }
         [HttpGet]
-        public IActionResult Get() => Ok(_productService.GetAll());
+        public IActionResult Get() => Ok(_productRopository.GetAll());
 
         [HttpGet("GetItemById")]
         public IActionResult GetById(Guid id)
         {
-            return Ok(_productService.GetById(id));
+            return Ok(_productRopository.GetById(id));
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Product product)
+        public IActionResult Create([FromRoute]Product product, [FromBody] CreateProductDtio createProductDtio )
         {
-            try
-            {
-                if (product == null)
-                {
-                    return BadRequest("Invalid product data.");
-                }
-
-                var createdProduct = _productService.Creat(product);
-                return Ok(createdProduct);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
+            return Ok(_productRopository.Creat(product,createProductDtio));
         }
         [HttpPut("Update")]
-        public IActionResult Update([FromBody] Product product, [FromQuery] Guid id) 
+        public IActionResult Update([FromQuery] Guid id, [FromBody] UpdateProductDtio updateProductDtio) 
         {
-           return Ok(_productService.Update(id,product));
+           return Ok(_productRopository.Update(id,updateProductDtio));
         }
 
         [HttpDelete("Delete")]
         public IActionResult DeleteById([FromQuery]Guid id) 
         {
-            return Ok(_productService.Delete(id));
+            return Ok(_productRopository.Delete(id));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using BusinessManagementSystem.Models.Product;
+﻿using BusinessManagementSystem.Dtios;
+using BusinessManagementSystem.Models.Product;
 
 namespace BusinessManagementSystem.Interfaces
 {
@@ -6,8 +7,8 @@ namespace BusinessManagementSystem.Interfaces
     {
         public IQueryable<Product> GetAll();
         public Product GetById(Guid id);
-        public bool Creat(Product item);
-        public bool Update(Guid id, Product item);
+        public Product Creat(Product item, CreateProductDtio createProductDtio);
+        public bool Update(Guid id, UpdateProductDtio updateProductDtio);
         public bool Delete(Guid id);
     }
 }

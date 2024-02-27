@@ -1,4 +1,5 @@
-﻿using BusinessManagementSystem.Infrastructure;
+﻿using BusinessManagementSystem.Dtios;
+using BusinessManagementSystem.Infrastructure;
 using BusinessManagementSystem.Interfaces;
 using BusinessManagementSystem.Models.Product;
 
@@ -6,66 +7,37 @@ namespace BusinessManagementSystem.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly BusinessDbContext _context;
+        private readonly IProductService _productService;
 
-        public ProductRepository(BusinessDbContext context) 
+        public ProductRepository(IProductService productService) 
         {
-                _context = context;
+            _productService = productService;
         }
-        public IQueryable<Product> GetAll()
-        {
-            return _context.Products;
-        }
-        public Product GetById(Guid id)
-        {
-            var item = _context.Products.Find(id);
-            if (item == null)
-            {
-                throw new Exception($"not {id} ");
-            }
-            return item;
-        }
-        public bool Creat(Product item)
-        {
-            try
-            {
-           
-              _context.Add(item);
-                var _item = _context.SaveChanges();
-            return _item>0;
 
-            }
-            catch (Exception)
-            {
-
-                return false;
-            } 
-        }
-        public bool Update(Guid id, Product item)
+        public Product Creat(Product item, CreateProductDtio createProductDtio)
         {
-            var _item = _context.Products.Find(id);
-            if (_item == null)
-            {
-                throw new Exception($"not {id} ");
-            }
-             _context.Update(item);
-            _context.SaveChanges();
-            return true;
+          return  _productService.Create(item, createProductDtio);
         }
+
         public bool Delete(Guid id)
         {
-            var item = _context.Products.Find(id);
-            if (item == null)
-            {
-                throw new Exception($"not {id} ");
-            }
-            _context.Products.Remove(item);
-            _context.SaveChanges();
-            return true;
+            return (_productService.Delete(id));
         }
 
+        public IQueryable<Product> GetAll()
+        {
+            return _productService.GetAll();
+        }
 
+        public Product GetById(Guid id)
+        {
+            return _productService.GetById(id);
+        }
 
+        public bool Update(Guid id, UpdateProductDtio updateProductDtio)
+        {
+          return  _productService.Update(id,updateProductDtio);
 
+        }
     }
 }

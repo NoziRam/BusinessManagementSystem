@@ -20,6 +20,8 @@ namespace BusinessManagementSystem
 
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IBalanceRepisitory, BalanceRepository>();
+            builder.Services.AddScoped<IBalanceService, BalanceService>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
