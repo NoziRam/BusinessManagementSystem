@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BusinessManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class FirtsItinial : Migration
+    public partial class firt_initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -45,7 +45,7 @@ namespace BusinessManagementSystem.Migrations
                     ShortTermLiabilitiies = table.Column<double>(type: "float", nullable: false),
                     LongTermLiabilitiies = table.Column<double>(type: "float", nullable: false),
                     Capital = table.Column<double>(type: "float", nullable: false),
-                    DateTime = table.Column<DateOnly>(type: "date", nullable: false)
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

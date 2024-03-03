@@ -8,17 +8,18 @@ namespace BusinessManagementSystem.Controllers
     [ApiController]
     public class BalanceController : ControllerBase
     {
-        private readonly IBalanceRepisitory _balanceRepository;
+        private readonly IBalanceRepository _repository;
+        
 
-        public BalanceController(IBalanceRepisitory balanceRepisitory)
+        public BalanceController(IBalanceRepository repository)
         {
-            _balanceRepository = balanceRepisitory; 
+            _repository=repository;
+
         }
         [HttpGet]
-        public IActionResult Get()
-        {
-          return Ok(_balanceRepository.Get());
+        public IActionResult Get() 
+        { 
+        return Ok(_repository.GetBalanceByDateTime());
         }
-
     }
 }

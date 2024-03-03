@@ -4,6 +4,6 @@ namespace BusinessManagementSystem.Interfaces
 {
     public interface IBalanceService
     {
-        public IQueryable<Balance> GetBalance();
+        public IQueryable<Balance> GetBalanceByDateTime();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace BusinessManagementSystem.Models.FinancialTransaction
 {
+   
     public class Balance : BaseEntity
     {
         public double CurrentAssets { get; set; }
@@ -18,6 +19,7 @@ namespace BusinessManagementSystem.Models.FinancialTransaction
         public double ShortTermLiabilitiies { get; set; }
         public double LongTermLiabilitiies { get; set; }
         public double Capital { get; set; }
-        public DateOnly DateTime { get; set; }
+        public DateTime DateTime { get; set; }
+      
     }
 }

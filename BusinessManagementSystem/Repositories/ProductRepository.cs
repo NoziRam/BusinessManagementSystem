@@ -16,7 +16,7 @@ namespace BusinessManagementSystem.Repositories
 
         public Product Creat(Product item, CreateProductDtio createProductDtio)
         {
-          return  _productService.Create(item, createProductDtio);
+            return _productService.Create(item, createProductDtio);
         }
 
         public bool Delete(Guid id)

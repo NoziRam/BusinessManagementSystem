@@ -11,10 +11,12 @@ namespace BusinessManagementSystem.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductRepository _productRopository;
+       
 
         public ProductController(IProductRepository productRepository)
         {
             _productRopository = productRepository;
+            
         }
         [HttpGet]
         public IActionResult Get() => Ok(_productRopository.GetAll());
@@ -26,9 +28,9 @@ namespace BusinessManagementSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromRoute]Product product, [FromBody] CreateProductDtio createProductDtio )
+        public IActionResult Create([FromRoute] Product product, [FromBody] CreateProductDtio createProductDtio)
         {
-            return Ok(_productRopository.Creat(product,createProductDtio));
+            return Ok(_productRopository.Creat(product, createProductDtio));
         }
         [HttpPut("Update")]
         public IActionResult Update([FromQuery] Guid id, [FromBody] UpdateProductDtio updateProductDtio) 

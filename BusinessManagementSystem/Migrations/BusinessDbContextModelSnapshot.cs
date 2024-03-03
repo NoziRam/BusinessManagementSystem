@@ -40,8 +40,8 @@ namespace BusinessManagementSystem.Migrations
                     b.Property<double>("CurrentAssets")
                         .HasColumnType("float");
 
-                    b.Property<DateOnly>("DateTime")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Debtors")
                         .HasColumnType("float");

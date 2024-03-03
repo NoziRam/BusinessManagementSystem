@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessManagementSystem.Migrations
 {
     [DbContext(typeof(BusinessDbContext))]
-    [Migration("20240225160646_FirtsItinial")]
-    partial class FirtsItinial
+    [Migration("20240302040239_firt_initial")]
+    partial class firt_initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,8 +43,8 @@ namespace BusinessManagementSystem.Migrations
                     b.Property<double>("CurrentAssets")
                         .HasColumnType("float");
 
-                    b.Property<DateOnly>("DateTime")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Debtors")
                         .HasColumnType("float");

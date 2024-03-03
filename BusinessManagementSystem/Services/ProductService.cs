@@ -10,6 +10,7 @@ namespace BusinessManagementSystem.Services
     public class ProductService : IProductService
     {
         private readonly BusinessDbContext _context;
+       
 
         public ProductService(BusinessDbContext context)
         {
@@ -28,18 +29,41 @@ namespace BusinessManagementSystem.Services
                 Description = createProductDtio.Description,
                 Availability = true
             };
-            var balance = new Balance();
-            
-              _context.Balances.Add(balance);
-              _context.Balances.ExecuteUpdate(c => c.SetProperty(p => p.StockProducts, p=>p.StockProducts + product.CostPrice));
-              _context.SaveChanges();
-            
-             
-              _context.Products.Add(product);
-              _context.SaveChanges();
-            return product;
+           
+            _context.Products.Add(product);
+           var balance= _context.Balances.FirstOrDefault();
+           var cashflow = _context.CashFlows.FirstOrDefault();
+
+            if (cashflow != null)
+            {
+                cashflow.Sale += product.Price;
+            }
+            else
+            {
+                cashflow = new CashFlow
+                {
+                    Sale = createProductDtio.Price
+                };
+            }
+            if ( balance==null)
+            {
+               balance= new Balance { };
                 
-            
+            }
+            else 
+            {
+
+                balance.StockProducts += product.CostPrice;
+                balance.DateTime = DateTime.Now;
+                balance.CassacashRegister += product.Price;
+                balance.SavingMoney += product.Price;
+
+        
+            }
+            _context.SaveChanges();
+            return product;
+
+
         }
 
         public bool Delete(Guid id)

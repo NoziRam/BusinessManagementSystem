@@ -1,4 +1,5 @@
 ﻿using BusinessManagementSystem.Models.BaseEntityModels;
+using BusinessManagementSystem.Models.FinancialTransaction;
 
 namespace BusinessManagementSystem.Models.Product
 {

@@ -19,6 +19,7 @@ namespace BusinessManagementSystem.Infrastructure
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Worker> Workers { get; set; }
+        public DbSet<Expenses> Expenses { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,6 +33,7 @@ namespace BusinessManagementSystem.Infrastructure
             modelBuilder.Entity<Admin>(entity => entity.HasKey(a => a.Id));
             modelBuilder.Entity<Owner>(entity => entity.HasKey(o => o.Id));
             modelBuilder.Entity<Worker>(entity => entity.HasKey(w => w.Id));
+            modelBuilder.Entity<Expenses>(entity=>entity.HasKey(e => e.Id));
             
 
 

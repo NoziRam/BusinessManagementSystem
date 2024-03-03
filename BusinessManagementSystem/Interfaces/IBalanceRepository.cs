@@ -2,8 +2,9 @@
 
 namespace BusinessManagementSystem.Interfaces
 {
-    public interface IBalanceRepisitory
+    public interface IBalanceRepository
     {
-        public IQueryable<Balance> Get();
+        public IQueryable<Balance> GetBalanceByDateTime();
+
     }
 }

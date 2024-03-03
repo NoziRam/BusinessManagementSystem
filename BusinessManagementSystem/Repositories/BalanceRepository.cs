@@ -3,17 +3,17 @@ using BusinessManagementSystem.Models.FinancialTransaction;
 
 namespace BusinessManagementSystem.Repositories
 {
-    public class BalanceRepository : IBalanceRepisitory
+    public class BalanceRepository : IBalanceRepository
     {
-        private readonly IBalanceService _balanceService;
+        private readonly IBalanceService _service;
 
-        public BalanceRepository(IBalanceService balanceService)
+        public BalanceRepository(IBalanceService service)
         {
-            _balanceService = balanceService;
+            _service=service;
         }
-        public IQueryable<Balance> Get()
+        public IQueryable<Balance> GetBalanceByDateTime()
         {
-          return  _balanceService.GetBalance();
+           return _service.GetBalanceByDateTime();
         }
     }
 }

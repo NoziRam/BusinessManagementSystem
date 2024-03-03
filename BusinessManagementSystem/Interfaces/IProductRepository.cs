@@ -10,5 +10,6 @@ namespace BusinessManagementSystem.Interfaces
         public Product Creat(Product item, CreateProductDtio createProductDtio);
         public bool Update(Guid id, UpdateProductDtio updateProductDtio);
         public bool Delete(Guid id);
+        
     }
 }
