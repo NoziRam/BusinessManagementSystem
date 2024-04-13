@@ -1,6 +1,7 @@
 
 using BusinessManagementSystem.Infrastructure;
 using BusinessManagementSystem.Interfaces;
+using BusinessManagementSystem.Models.BaseEntityModels;
 using BusinessManagementSystem.Repositories;
 using BusinessManagementSystem.Services;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,8 @@ namespace BusinessManagementSystem
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IBalanceRepository, BalanceRepository>();
             builder.Services.AddScoped<IBalanceService, BalanceService>();
+            builder.Services.AddScoped(typeof (IUserGenericRepository<>), typeof (UserGenericRepository<>));
+            builder.Services.AddScoped<IAdminService, AdminService>();
            
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

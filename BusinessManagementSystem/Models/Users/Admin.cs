@@ -1,6 +1,6 @@
 ﻿namespace BusinessManagementSystem.Models.Users
 {
-    public class Admin:User
+    public  class Admin:User
     {
     }
 }

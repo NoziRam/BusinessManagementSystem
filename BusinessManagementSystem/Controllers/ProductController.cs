@@ -10,10 +10,10 @@ namespace BusinessManagementSystem.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductRepository _productRopository;
+        private readonly IProductService _productRopository;
        
 
-        public ProductController(IProductRepository productRepository)
+        public ProductController(IProductService productRepository)
         {
             _productRopository = productRepository;
             
@@ -28,9 +28,9 @@ namespace BusinessManagementSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromRoute] Product product, [FromBody] CreateProductDtio createProductDtio)
+        public IActionResult Create([FromBody] CreateProductDtio createProductDtio)
         {
-            return Ok(_productRopository.Creat(product, createProductDtio));
+            return Ok(_productRopository.Create(createProductDtio));
         }
         [HttpPut("Update")]
         public IActionResult Update([FromQuery] Guid id, [FromBody] UpdateProductDtio updateProductDtio) 

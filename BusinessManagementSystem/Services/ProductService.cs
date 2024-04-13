@@ -9,18 +9,18 @@ namespace BusinessManagementSystem.Services
 {
     public class ProductService : IProductService
     {
-        private readonly BusinessDbContext _context;
+        private readonly IProductRepository _repository;
        
 
-        public ProductService(BusinessDbContext context)
+        public ProductService(IProductRepository repository)
         {
-            _context=context;
+            _repository=repository;
         }
-        public Product Create(Product item, CreateProductDtio createProductDtio)
+        public Product Create(CreateProductDtio createProductDtio)
         {
 
-            var product = new Product
-            {
+            var _item= new Product {   
+            
                 Id = Guid.NewGuid(),
                 Price = createProductDtio.Price,
                 CostPrice = createProductDtio.CostPrice,
@@ -29,41 +29,7 @@ namespace BusinessManagementSystem.Services
                 Description = createProductDtio.Description,
                 Availability = true
             };
-           
-            _context.Products.Add(product);
-           var balance= _context.Balances.FirstOrDefault();
-           var cashflow = _context.CashFlows.FirstOrDefault();
-
-            if (cashflow != null)
-            {
-                cashflow.Sale += product.Price;
-            }
-            else
-            {
-                cashflow = new CashFlow
-                {
-                    Sale = createProductDtio.Price
-                };
-            }
-            if ( balance==null)
-            {
-               balance= new Balance { };
-                
-            }
-            else 
-            {
-
-                balance.StockProducts += product.CostPrice;
-                balance.DateTime = DateTime.Now;
-                balance.CassacashRegister += product.Price;
-                balance.SavingMoney += product.Price;
-
-        
-            }
-            _context.SaveChanges();
-            return product;
-
-
+            return _repository.Creat(_item);       
         }
 
         public bool Delete(Guid id)
@@ -73,25 +39,19 @@ namespace BusinessManagementSystem.Services
             {
                 throw new Exception($"Not{id}");
             }
-            _context.Products.Remove(item);
-            _context.SaveChanges();
+            _repository.Delete(item.Id);
             return true;
 
         }
 
         public IQueryable<Product> GetAll()
         {
-           return _context.Products;
+          return  _repository.GetAll();
         }
 
         public Product GetById(Guid id)
         {
-            var item = _context.Products.FirstOrDefault(c=>c.Id==id);
-            if (item == null) 
-            {
-                throw new Exception($"not{id}");
-            }
-            return item;
+          return _repository.GetById(id);
         }
 
         public bool Update(Guid id, UpdateProductDtio updateProductDtio)
@@ -107,8 +67,9 @@ namespace BusinessManagementSystem.Services
                 item.Quantity = updateProductDtio.Quantity;
                 item.Name = updateProductDtio.Name;
                 item.Description = updateProductDtio.Description;
-                _context.SaveChanges();
+                
             }
+            _repository.Update(item.Id);
             return true;
         }
     }

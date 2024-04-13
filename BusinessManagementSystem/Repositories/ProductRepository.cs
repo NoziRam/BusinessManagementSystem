@@ -2,42 +2,60 @@
 using BusinessManagementSystem.Infrastructure;
 using BusinessManagementSystem.Interfaces;
 using BusinessManagementSystem.Models.Product;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusinessManagementSystem.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly IProductService _productService;
+        private readonly BusinessDbContext _context;
+      
 
-        public ProductRepository(IProductService productService) 
+        public ProductRepository(BusinessDbContext context) 
         {
-            _productService = productService;
+            _context=context;
         }
 
-        public Product Creat(Product item, CreateProductDtio createProductDtio)
+        public Product Creat(Product item)
         {
-            return _productService.Create(item, createProductDtio);
+           _context.Add(item);
+           _context.SaveChanges();
+            return item;
         }
 
         public bool Delete(Guid id)
         {
-            return (_productService.Delete(id));
+          var _item= _context.Set<Product>().FirstOrDefault(p => p.Id==id);
+            if (_item is null)
+            {
+                throw new Exception($"Not item{id}");
+            }
+            _context.Remove(_item);
+            _context.SaveChanges();
+            return true;
         }
 
         public IQueryable<Product> GetAll()
         {
-            return _productService.GetAll();
+          return  _context.Set<Product>()/*.Include(p => p.Availability == true)*/;
         }
 
         public Product GetById(Guid id)
         {
-            return _productService.GetById(id);
+            var item = _context.Set<Product>().FirstOrDefault(p => p.Id==id);
+            if (item is null)
+            {
+                throw new Exception($"Item not is id {id}");
+            }
+            return item;
         }
 
-        public bool Update(Guid id, UpdateProductDtio updateProductDtio)
+        public bool Update(Guid id)
         {
-          return  _productService.Update(id,updateProductDtio);
-
+            var item = GetById(id);
+           _context.Update(item);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

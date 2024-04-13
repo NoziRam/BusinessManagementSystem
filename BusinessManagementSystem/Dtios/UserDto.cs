@@ -1,10 +1,7 @@
-﻿using BusinessManagementSystem.Models.BaseEntityModels;
-
-namespace BusinessManagementSystem.Models.Users
+﻿namespace BusinessManagementSystem.Dtios
 {
-    public abstract class User:BaseEntity
+    public class UserDto
     {
-        
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string UserStatus { get; set; } = string.Empty;
