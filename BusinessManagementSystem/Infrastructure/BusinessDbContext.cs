@@ -9,13 +9,14 @@ namespace BusinessManagementSystem.Infrastructure
     public class BusinessDbContext: DbContext
     {
         public BusinessDbContext(DbContextOptions options): base(options) { }
-       
+
         
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Balance> Balances { get; set; }
         public DbSet<CashFlow> CashFlows { get; set; }
         public DbSet<FinancialIndicators> FinancialIndicators { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Worker> Workers { get; set; }
@@ -30,10 +31,12 @@ namespace BusinessManagementSystem.Infrastructure
             modelBuilder.Entity<Balance>(entity => entity.HasKey(b => b.Id));
             modelBuilder.Entity<CashFlow>(entity => entity.HasKey(c => c.Id));
             modelBuilder.Entity<FinancialIndicators>(entity => entity.HasKey(f => f.Id));
+            modelBuilder.Ignore<User>();
             modelBuilder.Entity<Admin>(entity => entity.HasKey(a => a.Id));
             modelBuilder.Entity<Owner>(entity => entity.HasKey(o => o.Id));
             modelBuilder.Entity<Worker>(entity => entity.HasKey(w => w.Id));
             modelBuilder.Entity<Expenses>(entity=>entity.HasKey(e => e.Id));
+
             
 
 

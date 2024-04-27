@@ -13,5 +13,6 @@ namespace BusinessManagementSystem.Models.Product
         public double CostPrice { get; set; }
         public Category? Category { get; set; }
         public bool Availability { get; set; }
+         public  DateTime DateTime { get; set; }
     }
 }

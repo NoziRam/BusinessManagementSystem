@@ -18,6 +18,6 @@ namespace BusinessManagementSystem.Models.FinancialTransaction
         public double Tax { get; set; }
         public double TotalCosts { get; set; }
         public double NetProfit { get; set; }
-        public DateTime DateTime { get; set; }
+       
     }
 }

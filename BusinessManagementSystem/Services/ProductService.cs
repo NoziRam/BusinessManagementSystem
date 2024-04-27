@@ -16,7 +16,7 @@ namespace BusinessManagementSystem.Services
         {
             _repository=repository;
         }
-        public Product Create(CreateProductDtio createProductDtio)
+        public Product Create(CreateProductDTO createProductDtio)
         {
 
             var _item= new Product {   
@@ -27,7 +27,9 @@ namespace BusinessManagementSystem.Services
                 Name = createProductDtio.Name,
                 Quantity = createProductDtio.Quantity,
                 Description = createProductDtio.Description,
-                Availability = true
+                Availability = true, 
+                DateTime = DateTime.Now,
+               
             };
             return _repository.Creat(_item);       
         }
@@ -54,7 +56,7 @@ namespace BusinessManagementSystem.Services
           return _repository.GetById(id);
         }
 
-        public bool Update(Guid id, UpdateProductDtio updateProductDtio)
+        public bool Update(Guid id, UpdateProductDTO updateProductDtio)
         {
             var item = GetById(id);
             if (item == null)

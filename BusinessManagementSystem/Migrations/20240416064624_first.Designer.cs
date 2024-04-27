@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessManagementSystem.Migrations
 {
     [DbContext(typeof(BusinessDbContext))]
-    [Migration("20240302040239_firt_initial")]
-    partial class firt_initial
+    [Migration("20240416064624_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,6 +137,23 @@ namespace BusinessManagementSystem.Migrations
                     b.ToTable("CashFlows");
                 });
 
+            modelBuilder.Entity("BusinessManagementSystem.Models.FinancialTransaction.Expenses", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Сost")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Expenses");
+                });
+
             modelBuilder.Entity("BusinessManagementSystem.Models.FinancialTransaction.FinancialIndicators", b =>
                 {
                     b.Property<Guid>("Id")
@@ -253,6 +270,22 @@ namespace BusinessManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -260,6 +293,8 @@ namespace BusinessManagementSystem.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Admins");
+
+                    b.HasDiscriminator().HasValue("Admin");
                 });
 
             modelBuilder.Entity("BusinessManagementSystem.Models.Users.Owner", b =>
@@ -279,6 +314,22 @@ namespace BusinessManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -286,6 +337,8 @@ namespace BusinessManagementSystem.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Owners");
+
+                    b.HasDiscriminator().HasValue("Owner");
                 });
 
             modelBuilder.Entity("BusinessManagementSystem.Models.Users.Worker", b =>
@@ -305,6 +358,22 @@ namespace BusinessManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -312,6 +381,8 @@ namespace BusinessManagementSystem.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Workers");
+
+                    b.HasDiscriminator().HasValue("Worker");
                 });
 
             modelBuilder.Entity("BusinessManagementSystem.Models.Product.Product", b =>

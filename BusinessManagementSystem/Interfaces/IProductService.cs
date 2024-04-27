@@ -7,8 +7,8 @@ namespace BusinessManagementSystem.Interfaces
     {
         public IQueryable<Product> GetAll();
         public Product GetById(Guid id);
-        public Product Create(CreateProductDtio createProductDtio);
-        public bool Update(Guid id, UpdateProductDtio updateProductDtio);
+        public Product Create(CreateProductDTO createProductDtio);
+        public bool Update(Guid id, UpdateProductDTO updateProductDtio);
         public bool Delete(Guid id);
     }
 }

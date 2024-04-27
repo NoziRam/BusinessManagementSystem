@@ -1,6 +1,6 @@
 ﻿namespace BusinessManagementSystem.Dtios
 {
-    public class UpdateProductDtio
+    public class UpdateProductDTO
     {
         public double Price { get; set; }
         public int Quantity { get; set; }

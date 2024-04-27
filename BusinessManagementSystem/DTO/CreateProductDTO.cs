@@ -1,6 +1,6 @@
 ﻿namespace BusinessManagementSystem.Dtios
 {
-    public class CreateProductDtio
+    public class CreateProductDTO
     {  
         public int Quantity { get; set; }
         public string Name { get; set; } = string.Empty;

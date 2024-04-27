@@ -1,6 +1,6 @@
 ﻿namespace BusinessManagementSystem.Dtios
 {
-    public enum  CreateExpensesDtio
+    public enum  CreateExpensesDTO
     {
     SalaryForEmployees,
     RentalCosts,

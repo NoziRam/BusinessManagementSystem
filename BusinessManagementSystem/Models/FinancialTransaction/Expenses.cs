@@ -7,6 +7,8 @@ namespace BusinessManagementSystem.Models.FinancialTransaction
     {
         public Guid Id { get; set; }
         public double Сost { get; set; }
-        public CreateExpensesDtio Category { get; set; }
+        public CreateExpensesDTO Category { get; set; }
+       
+        public DateTime DateTime { get; set; }
     }
 }

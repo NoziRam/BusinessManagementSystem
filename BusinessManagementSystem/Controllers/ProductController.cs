@@ -28,12 +28,12 @@ namespace BusinessManagementSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateProductDtio createProductDtio)
+        public IActionResult Create([FromBody] CreateProductDTO createProductDtio)
         {
             return Ok(_productRopository.Create(createProductDtio));
         }
         [HttpPut("Update")]
-        public IActionResult Update([FromQuery] Guid id, [FromBody] UpdateProductDtio updateProductDtio) 
+        public IActionResult Update([FromQuery] Guid id, [FromBody] UpdateProductDTO updateProductDtio) 
         {
            return Ok(_productRopository.Update(id,updateProductDtio));
         }
